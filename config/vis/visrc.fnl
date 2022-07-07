@@ -5,6 +5,7 @@
 (require :plugins/vis-sneak)
 (require :plugins/vis-ctags)
 (require :plugins/vis-tmux-repl/tmux-repl)
+(require :plugins/vis-goto-file)
 
 (local plugin-vis-open (require :plugins/vis-fzf-open))
 
@@ -24,32 +25,42 @@
                   :python ["set et on" "set tw 4"]})
 
 (set plugin-vis-open.fzf_path
-     "FZF_DEFAULT_COMMAND='rg --files --hidden -g \"!.git/\" -g \"\"' fzf")
+     "FZF_DEFAULT_COMMAND='rg --hidden --smart-case --line-number --with-filename . --field-match-separator \" \" ' fzf")
 
-(set plugin-vis-open.fzf_args "-q '!.class ' --height=20%")
+(set plugin-vis-open.fzf_args
+     "--height=25% --preview 'bat --color=always {1} --highlight-line {2}'")
 
-(local colors {:bg_0 "#ffffff"
+(set vis.shell :/usr/local/pla9/bin/rc)
+
+;; fnlfmt: skip
+(local colors {:bg_0 "#fdfdfc"
                :bg_1 "#ebebeb"
                :bg_2 "#cccccc"
                :md_0 "#858585"
                :md_1 "#5c5c5c"
                :fg_0 "#3d3d3d"
                :fg_1 "#2a2a2a"
+
                :red "#d11100"
                :green "#309900"
                :yellow "#c79800"
                :blue "#0063db"
                :magenta "#d4008d"
                :cyan "#00b8a5"
+
                :bred "#b80f00"
                :bgreen "#218f00"
                :byellow "#b38900"
                :bblue "#0059d2"
                :bmagenta "#b8007a"
                :bcyan "#009485"
+
+               :mblue "#587ae2"
+
                :gold "#846d21"
                :specials "#fed200"
-               :orange "#db6600"})
+               :orange "#db6600"
+               :selection "#e2e3fa"})
 
 ;; fnlfmt: skip
 (vis.events.subscribe vis.events.INIT
@@ -57,36 +68,38 @@
                         (vis:command "set tabwidth 4")
                         (vis:command "set autoindent on")
                         (vis:command "set ignorecase")
+
                         ;; Hito color scheme
                         (local lexers vis.lexers)
                         (set lexers.STYLE_DEFAULT (.. "fore:" colors.fg_1 ",back:" colors.bg_0))
                         (set lexers.STYLE_NOTHING (.. "back:" colors.bg_0))
                         (set lexers.STYLE_CLASS :bold)
-                        (set lexers.STYLE_COMMENT (.. "fore:" colors.green))
+                        (set lexers.STYLE_COMMENT (.. "fore:" colors.md_0 ",italics"))
                         (set lexers.STYLE_CONSTANT :bold)
                         (set lexers.STYLE_DEFINITION (.. "fore:" colors.orange))
                         (set lexers.STYLE_ERROR (.. "fore:" colors.red ",italics"))
                         (set lexers.STYLE_FUNCTION :bold)
                         (set lexers.STYLE_KEYWORD :bold)
                         (set lexers.STYLE_LABEL (.. "fore:" colors.green))
-                        (set lexers.STYLE_NUMBER (.. "fore:" colors.md_0))
-                        (set lexers.STYLE_OPERATOR (.. "fore:" colors.fg_1))
+                        (set lexers.STYLE_NUMBER (.. "fore:" colors.md_1))
+                        (set lexers.STYLE_OPERATOR (.. "fore:" colors.md_0))
                         (set lexers.STYLE_REGEX "fore:green")
                         (set lexers.STYLE_STRING (.. "fore:" colors.blue))
                         (set lexers.STYLE_PREPROCESSOR (.. "fore:" colors.orange))
                         (set lexers.STYLE_TAG (.. "fore:" colors.fg_0))
-                        (set lexers.STYLE_TYPE (.. "fore:" colors.yellow))
-                        (set lexers.STYLE_VARIABLE (.. "fore:" colors.blue))
+                        (set lexers.STYLE_TYPE (.. "fore:" colors.gold))
+                        (set lexers.STYLE_VARIABLE (.. "fore:" colors.bcyan))
                         (set lexers.STYLE_WHITESPACE "")
                         (set lexers.STYLE_EMBEDDED (.. "back:" colors.bg_1 ",fore:" colors.gold))
                         (set lexers.STYLE_IDENTIFIER (.. "fore:" colors.fg_1))
-                        (set lexers.STYLE_LINENUMBER (.. "back:" colors.bg_2 ",fore:" colors.md_1))
-                        (set lexers.STYLE_LINENUMBER_CURSOR (.. "fore:" colors.gold ",back:" colors.bg_1))
-                        (set lexers.STYLE_CURSOR (.. "fore:" colors.bg_0 ",back:" colors.orange))
+
+                        (set lexers.STYLE_LINENUMBER (.. "fore:" colors.md_1))
+                        (set lexers.STYLE_LINENUMBER_CURSOR (.. "fore:" colors.md_1 ",back:" colors.specials))
+                        (set lexers.STYLE_CURSOR (.. "fore:" colors.bg_2 ",back:" colors.orange))
                         (set lexers.STYLE_CURSOR_PRIMARY (.. "fore:" colors.bg_0 ",back:" colors.orange))
-                        (set lexers.STYLE_CURSOR_LINE (.. "back:" colors.bg_1))
+                        (set lexers.STYLE_CURSOR_LINE lexers.STYLE_DEFAULT)
                         (set lexers.STYLE_COLOR_COLUMN (.. "back:" colors.bg_1 ",fore:" colors.red))
-                        (set lexers.STYLE_SELECTION (.. "back:" colors.specials))
+                        (set lexers.STYLE_SELECTION (.. "back:" colors.selection))
                         (set lexers.STYLE_STATUS (.. "back:" colors.bg_2 ",fore:" colors.md_0))
                         (set lexers.STYLE_STATUS_FOCUSED (.. "back:" colors.bg_2 ",fore:" colors.bmagenta))
                         (set lexers.STYLE_SEPARATOR lexers.STYLE_DEFAULT)
@@ -133,6 +146,8 @@
      {:ext ["%.eml$"] :cmd ["set colorcolumn 72" "set autoindent off"]})
 
 (set vis.ftdetect.filetypes.xml {:ext ["%.glif$"]})
+
+(set vis.ftdetect.filetypes.rails {:ext ["%.rb$"]})
 
 (set vis.ftdetect.filetypes.janet
      {:ext ["%.janet$"] :cmd ["set syntax janet" "set et on" "set tw 2"]})

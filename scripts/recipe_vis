@@ -6,9 +6,10 @@
             "https://repo.or.cz/vis-quickfix.git"
             "https://github.com/lutobler/vis-commentary"
             "https://github.com/erf/vis-sneak"
-            "https://git.sr.ht/~mcepl/vis-fzf-open"
+            "https://github.com/sansfontieres/vis-fzf-open"
             "https://github.com/kupospelov/vis-ctags"
-            "https://github.com/maciejjan/vis-tmux-repl"])
+            "https://github.com/maciejjan/vis-tmux-repl"
+            "https://repo.or.cz/vis-goto-file.git"])
 
 (def vis_dir (string/format "%s/.config/vis" (os/getenv "HOME")))
 (def base_dir (os/cwd))

@@ -7,6 +7,7 @@
                 {:title "vim" :source "vimrc" :target ".vimrc" :recipe true} # pm: gvim-huge OR macvim +huge
                 {:title "tmux" :source "tmux.conf" :target ".tmux.conf"}
                 {:title "bat" :source "batrc" :target ".config/bat/config" :recipe true}
+                {:title "ripgrep" :source "ripgreprc" :target ".config/ripgrep/ripgreprc"}
                 {:title "mbsync" :source "mbsyncrc" :target ".mbsyncrc" :directory "email"}
                 {:title "mutt" :source "muttrc" :target ".config/mutt/muttrc" :recipe true :directory "email"} # pm: psi fork
                 {:title "notmuch" :source "notmuch-config" :target ".notmuch-config" :directory "email"}
