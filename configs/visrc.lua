@@ -2,12 +2,14 @@ require("vis")
 require("plugins/vis-modelines")
 require("plugins/vis-filetype-settings/vis-filetype-settings")
 require("plugins/vis-quickfix")
+require("plugins/vis-janet")
 require("plugins/vis-zig")
 require("plugins/vis-commentary")
 require("plugins/vis-sneak")
 require("plugins/vis-ctags")
 require("plugins/vis-tmux-repl/tmux-repl")
 plugin_vis_open = require('plugins/vis-fzf-open')
+
 settings = {
 	markdown = {"set tw 3", "set et on"},
 	lua = {"set tw 4", "set et off"},
@@ -25,7 +27,6 @@ settings = {
 	yaml = {"set et on", "set tw 2"},
 	markdown = {"set et on", "set tw 2", "set cc 73"},
 	python = {"set et on", "set tw 4"},
-	email = {"set autoindent off"},
 }
 
 plugin_vis_open.fzf_path = (
@@ -73,13 +74,14 @@ end)
 
 vis.ftdetect.filetypes.email = {
 	ext = { "%.eml$" },
-	cmd = { "set colorcolumn 72" },
+	cmd = { "set colorcolumn 72", "set autoindent off"},
 }
 
 vis.ftdetect.filetypes.xml = {
 	ext = { "%.glif$" },
 }
 
-vis.ftdetect.filetypes.clojure = {
+vis.ftdetect.filetypes.janet = {
 	ext = { "%.janet$" },
+	cmd = { "set syntax janet", "set et on", "set tw 2" },
 }

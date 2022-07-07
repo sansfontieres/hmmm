@@ -3,6 +3,7 @@
 (def repos ["https://github.com/lutobler/vis-modelines"
 			         "https://github.com/jocap/vis-filetype-settings"
 			         "https://repo.or.cz/vis-quickfix.git"
+			         "https://git.sansfontieres.com/~romi/vis-janet"
 			         "https://git.sansfontieres.com/~romi/vis-zig"
 			         "https://github.com/lutobler/vis-commentary"
 			         "https://github.com/erf/vis-sneak"
