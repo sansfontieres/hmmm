@@ -20,7 +20,9 @@ info: You may run samurai :^)
 Of course you can use ninja instead of samurai, but why would you?
 
 The zig code also generates a `scripts` directory holding scripts that setups
-installation or configurations when needed.
+installation or configurations when needed.  
+The scripts uses package managers commands that I’m likely to use (xbps on Void
+Linux, or MacPorts on macOS).
 
 If zig is not installed, the script `get_zig.sh` takes care of it. The zig code
 includes samurai to the list of packages to install.
