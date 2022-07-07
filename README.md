@@ -5,24 +5,30 @@
 
 ## How does this work ??
 
-The zig code in `ninja.zig` generates a `build.ninja` file. To get this mess to
-work, you want to run the following:
+You need janet to run the script `ninja.janet`, which generates a
+`build.ninja` file. To get this mess to work, you want to run the
+following:
 
 ```sh
-; zig run ninja.zig
-info: Creating a build.ninja file
+; ./ninja.janet
 info: You may run samurai :^)
 ; samu
 [1/5] cp hgrc /home/r/.config/hg/hgrc
-...
+--8<--
+; samu recipe-vis
+[1/1] scripts/recipe_vis
+--8<--
 ```
 
-Of course you can use ninja instead of samurai, but why would you?
+Of course you can use ninja instead of samurai, or even move those files
+yourself :^) <!-- lol -->
 
-The zig code also generates a `scripts` directory holding scripts that setups
-installation or configurations when needed.  
-The scripts uses package managers commands that I’m likely to use (xbps on Void
-Linux, or MacPorts on macOS).
 
-If zig is not installed, the script `get_zig.sh` takes care of it. The zig code
-includes samurai to the list of packages to install.
+## Setup
+
+If zig is not installed, the script `get_zig.sh` takes care of it. Same
+story with `get_janet.sh` which will checkout the lattest tagged commit
+from the janet repository.
+
+The zsh prompt comes from `prompt.zig`. Run `zig build -Drelease-safe`
+to generate the binary.
