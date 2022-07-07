@@ -10,9 +10,9 @@
 
 (global settings {:markdown ["set et on" "set tw 2" "set cc 73"]
                   :lua ["set tw 4" "set et off"]
-                  :pascal ["set tw 4" "set et on"]
+                  :pascal ["set et on" "set tw 2" "set cc 81"]
                   :zig ["set tw 4" "set et on"]
-                  :ansi_c ["set et off" "set tw 8" "set cc 81"]
+                  :ansi_c ["set et on" "set tw 2" "set cc 81"]
                   :cpp ["set et off" "set tw 8" "set cc 81"]
                   :go ["set et off" "set tw 4"]
                   :sh ["set et off" "set tw 4"]
@@ -113,7 +113,6 @@
 (nmap " w"
       ":set show-tabs!<Enter>:set show-newlines!<Enter>:set show-spaces!<Enter>")
 
-(nmap " d" ":n<Enter>:<")
 (nmap :<C-p> ":fzf<Enter>")
 
 (fn set-title [title]
@@ -138,16 +137,8 @@
 (set vis.ftdetect.filetypes.janet
      {:ext ["%.janet$"] :cmd ["set syntax janet" "set et on" "set tw 2"]})
 
-(vis:command_register :timestamp
-                      (fn []
-                        (local timestamp
-                               (.. (os.date "%Y-%m-%dT%H:%M:%SZ\n"
-                                            (os.time (os.date :!*t)))
-                                   (string.rep "-" 20) "\n"))
-                        (vis.win.file:insert vis.win.selection.pos timestamp))
-                      "Insert the current datetime in the RFC 3339 format")
-
-(nmap " d" ":timestamp<Enter>")
+(nmap " t1" ":<timestamp h1<Enter>")
+(nmap " t2" ":<timestamp h2<Enter>")
 
 (fn fmt [file path]
   (var fmt-cmd nil)
