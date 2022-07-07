@@ -1,0 +1,12 @@
+#!/bin/rc
+ppi=157
+
+if(~ $#* 0){
+	echo 'Usage: hombre x manpage'
+	exit
+}
+if(~ $#* 2)
+	d=$1' '$2
+if not
+	d=$1
+window 'man -t '$d' | page -p '$ppi' -R'

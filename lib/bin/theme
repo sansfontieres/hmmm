@@ -1,0 +1,4 @@
+#!/bin/rc
+
+cat $home/lib/themes/rio/$sysname > /dev/theme
+grep softscreen /dev/vgactl >> /dev/vgactl

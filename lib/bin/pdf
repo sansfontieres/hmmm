@@ -1,0 +1,16 @@
+#!/bin/rc
+ppi=157
+
+if(~ $#* 0){
+	echo 'Usage: pdf [file] [page]'
+	exit
+}
+
+d=$1
+
+if(~ $#2 1){
+	p=$2
+	window -cd `{pwd} page -R -p $ppi -j $d!$p $d
+}
+if not
+	window -cd `{pwd} page -R -p $ppi $d

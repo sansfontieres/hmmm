@@ -1,0 +1,21 @@
+#!/bin/rc
+ppi=157
+
+if(test -e /bin/netsurf)
+	browser=netsurf
+if not
+	browser='mothra -a'
+
+if(! test -e /bin/markdown){
+	echo 'You need discount (see 9front’s extras)'
+	exit
+}
+
+if(~ $#* 0){
+	echo 'Usage: md [file]'
+	exit
+}
+d=$1
+f=`{basename $d}
+c='<meta charset="utf-8" />' # netsurf needs this
+window -r 50 50 800 800 -cd `{pwd} 'ramfs;echo '''$c''' > /tmp/'$f'.html; markdown -f 1.0 '$d' >> /tmp/'$f'.html; '$browser' file:///tmp/'$f'.html'

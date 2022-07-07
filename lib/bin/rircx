@@ -1,0 +1,5 @@
+#!/bin/rc
+rfork
+rimport asinru.sansfontieres.com /srv
+rimport asinru.sansfontieres.com  /tmp
+ircx -s libera $*

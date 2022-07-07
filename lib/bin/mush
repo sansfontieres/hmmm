@@ -1,0 +1,15 @@
+#!/bin/rc
+# rcpu to my servers.
+rfork e
+
+domain=sansfontieres.com
+dest=$1.$domain
+
+if(~ $#* 0){
+	echo Usage: mush server [commands…]
+	exit
+}
+if not if (~ $#2 0)
+	rcpu -h $dest -u romi
+if not if (~ $#2 1)
+	rcpu -h $dest -u romi -c $2

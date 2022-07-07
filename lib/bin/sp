@@ -1,0 +1,8 @@
+#!/bin/rc
+# Sam but it spawns a ptrapped window for the current and child
+# directories.
+
+
+pth=`{pwd}
+
+window -cd $pth 'ptrap edit ''^'$pth/'''; s'

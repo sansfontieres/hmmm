@@ -1,0 +1,5 @@
+#!/bin/rc
+theme=$zuketheme
+font=$sansserif
+
+audio/mkplist /n/music | audio/zuke -c aAt

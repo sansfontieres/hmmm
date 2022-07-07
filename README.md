@@ -1,13 +1,28 @@
-Editable Text Configuration
-===========================
+Homedir
+=======
+
+A set of configuration files and scripts that I carry with me on macOS,
+Linux and 9front. Nothing exciting.
+
+
+$home/lib (9front)
+------------------
+> I'm giving you a night call to tell you there’s bugs in my computer
+
+My 9front configs, scripts, and patches. Copy/clone the `lib` directory
+in `$home/lib` and voilà!
+
+
+Editable Text Configuration (unix)
+----------------------------------
 > Or dotfiles as they say 👴
 
 
-How does this work ??
----------------------
-You need janet to run the script `scripts/ninja.rc`, which generates a
-`build.ninja` file. To get this mess to work, you want to run the
-following:
+**How does this work ??**  
+First, cd into the `etc` directory.  
+You need plan9port’s rc to run the script `scripts/ninja.rc`, which
+generates a `build.ninja` file. To get this mess to work, you want to
+run the following:
 
 ```sh
 ; ./scripts/ninja.rc
@@ -21,11 +36,10 @@ info: You may run samurai :^)
 ```
 
 Of course you can use ninja instead of samurai, or even move those files
-yourself :^) <!-- lol -->
+yourself :^)
 
 
-Setup
------
+**Setup**  
 To get plan9port, (needed for `rc`) run `get_plan9port.sh`.
 
 If zig is not installed, the script `get_zig.rc` in the `scripts`

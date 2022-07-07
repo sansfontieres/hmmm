@@ -1,0 +1,4 @@
+#!/bin/rc
+
+facesgreet='〒 Arriving Messages'
+window 0,204,400,306 faces -c -m /mail/fs/Inbox -m /mail/fs/9 -m /mail/fs/OpenBSD -m /mail/fs/Miscs-Lists -m /mail/fs/Feed

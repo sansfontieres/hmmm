@@ -1,0 +1,17 @@
+# to update: cp $home/lib/plumbing /mnt/plumb/rules
+
+editor = sam
+browser = mothra
+
+# Thanks Sigrid
+type	is	text
+data 	matches	'https://(www.)?youtube[^ ]+'
+plumb	start	window yt ''''$0''''
+
+# Thanks Sirjofri
+type	is	text
+data	matches	'9fs://([^ /]+)/([^ ]+/)([^ ]*)'
+plumb	start	window 9fs $1 && cd /n/$1/$2 && ls -l $3 && rc -i
+
+include basic
+

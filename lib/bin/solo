@@ -1,0 +1,6 @@
+#!/bin/rc
+# Sam but you can’t plumb it.
+rfork n
+
+unmount /mnt/plumb
+s $*

@@ -1,0 +1,4 @@
+#!/bin/rc
+
+facesgreet='※ Buffered Tasks'
+window 0,306,400,408 faces -c -im /mail/fs/Later
