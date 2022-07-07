@@ -1,5 +1,5 @@
 #!/usr/bin/env janet
-# vim: set ft=janet noet
+# vim: set ft=janet
 
 (def repos ["https://github.com/lutobler/vis-modelines"
 			         "https://github.com/jocap/vis-filetype-settings"

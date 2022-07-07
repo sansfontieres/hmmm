@@ -1,4 +1,10 @@
-#!/bin/sh -e
+#!/usr/bin/env janet
+# vim: set ft=janet
 
-mkdir -p "$HOME"/.config/bat/themes
-cp config/bat/hito.tmTheme "$HOME"/.config/bat/themes/Hito\ light.tmTheme
+(def bat_dir (string/format "%s/.config/bat" (os/getenv "HOME")))
+(os/mkdir bat_dir)
+(os/mkdir (string/format "%s/themes" bat_dir))
+(spit
+  (string/format "%s/themes/Hito light.tmTheme" bat_dir)
+  (slurp "config/bat/hito.tmTheme"))
+(os/shell "bat cache -b")
