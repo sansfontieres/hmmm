@@ -1,8 +1,6 @@
 (require :plugins/vis-modelines)
 (require :plugins/vis-filetype-settings/vis-filetype-settings)
 (require :plugins/vis-quickfix)
-(require :plugins/vis-janet)
-(require :plugins/vis-zig)
 (require :plugins/vis-commentary)
 (require :plugins/vis-sneak)
 (require :plugins/vis-ctags)
@@ -144,8 +142,32 @@
                         (local timestamp
                                (.. (os.date "%Y-%m-%dT%H:%M:%SZ\n"
                                             (os.time (os.date :!*t)))
-                                   (string.rep "-" 20)
-                                   "\n"))
+                                   (string.rep "-" 20) "\n"))
                         (vis.win.file:insert vis.win.selection.pos timestamp))
                       "Insert the current datetime in the RFC 3339 format")
+
 (nmap " d" ":timestamp<Enter>")
+
+(fn fmt [file path]
+  (var fmt-cmd nil)
+  (local lang vis.win.syntax)
+  (if (= lang :go) (set fmt-cmd :gofmt)
+      (= lang :zig) (set fmt-cmd "zig fmt --stdin")
+      (= lang :janet) (set fmt-cmd
+                           "janet -e '(use spork)(def src (file/read stdin :all))(fmt/format-print src)'")
+      (= lang :fennel) (set fmt-cmd "fnlfmt -")
+      (= lang :ansi_c) (set fmt-cmd :clang-format)
+      (lua "return true"))
+  (local pos vis.win.selection.pos)
+  (local (status out err) (vis:pipe file {:start 0 :finish file.size} fmt-cmd))
+  (when (or (not= status 0) (not out))
+    (when err
+      (vis:info err))
+    (lua "return false"))
+  (file:delete 0 file.size)
+  (file:insert 0 out)
+  (set vis.win.selection.pos pos)
+  true)
+
+(vis.events.subscribe vis.events.FILE_SAVE_PRE fmt)
+
