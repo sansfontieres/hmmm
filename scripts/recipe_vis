@@ -2,7 +2,7 @@
 # vim: set ft=rc
 
 repos = (\
-https://github.com/lutobler/vis-modelines \
+https://github.com/sansfontieres/vis-modelines \
 https://github.com/jocap/vis-filetype-settings \
 https://repo.or.cz/vis-quickfix.git \
 https://github.com/lutobler/vis-commentary \
