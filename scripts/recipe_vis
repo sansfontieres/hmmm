@@ -2,15 +2,13 @@
 # vim: set ft=janet
 
 (def repos ["https://github.com/lutobler/vis-modelines"
-			         "https://github.com/jocap/vis-filetype-settings"
-			         "https://repo.or.cz/vis-quickfix.git"
-			         "https://git.sansfontieres.com/~romi/vis-janet"
-			         "https://git.sansfontieres.com/~romi/vis-zig"
-			         "https://github.com/lutobler/vis-commentary"
-			         "https://github.com/erf/vis-sneak"
-			         "https://git.sr.ht/~mcepl/vis-fzf-open"
-			         "https://github.com/kupospelov/vis-ctags"
-			         "https://github.com/maciejjan/vis-tmux-repl"])
+            "https://github.com/jocap/vis-filetype-settings"
+            "https://repo.or.cz/vis-quickfix.git"
+            "https://github.com/lutobler/vis-commentary"
+            "https://github.com/erf/vis-sneak"
+            "https://git.sr.ht/~mcepl/vis-fzf-open"
+            "https://github.com/kupospelov/vis-ctags"
+            "https://github.com/maciejjan/vis-tmux-repl"])
 
 (def vis_dir (string/format "%s/.config/vis" (os/getenv "HOME")))
 (def base_dir (os/cwd))
@@ -34,11 +32,11 @@
   (spit (string/format "%s/lexers/%s" vis_dir lexer) lexer_buff))
 
 (def visrc_buff
-``
+  ``
 require('vis')
 local fennel = require("fennel")
 local config = fennel.dofile("%s/visrc.fnl")
 ``)
-(spit (string/format "%s/visrc.lua" vis_dir) (string/format visrc_buff vis_dir ))
+(spit (string/format "%s/visrc.lua" vis_dir) (string/format visrc_buff vis_dir))
 
 (print "info: vis plugins, lexers and theme are installed :^)")
