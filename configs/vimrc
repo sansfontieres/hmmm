@@ -19,13 +19,8 @@ call minpac#init({'verbose': 3})
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 	" Real plugins
 	call minpac#add('editorconfig/editorconfig-vim')
-	call minpac#add('mhinz/vim-signify')
-	call minpac#add('lambdalisue/gina.vim', {'type': 'opt'})
-	call minpac#add('ludovicchabant/vim-lawrencium', {'type': 'opt'})
-	call minpac#add('ludovicchabant/vim-gutentags')
 	call minpac#add('tpope/vim-repeat')
 	call minpac#add('tpope/vim-surround')
-	call minpac#add('tpope/vim-dispatch', {'type': 'opt'})
 	call minpac#add('justinmk/vim-sneak')
 	call minpac#add('romainl/vim-qf')
 	call minpac#add('haya14busa/vim-asterisk')
@@ -33,29 +28,23 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 	call minpac#add('kana/vim-textobj-user')
 	call minpac#add('kana/vim-textobj-line')
 	" QOL
-	call minpac#add('lambdalisue/fern.vim')
 	call minpac#add('andymass/vim-matchup')
-	call minpac#add('liuchengxu/vim-clap', {'do': {-> clap#installer#force_download()}})
-	call minpac#add('liuchengxu/vista.vim', {'type': 'opt'})
+	call minpac#add('ctrlpvim/ctrlp.vim')
 	call minpac#add('dense-analysis/ale', {'type': 'opt'})
-	call minpac#add('igankevich/mesonic', {'type': 'opt'})
 	call minpac#add('dstein64/vim-startuptime', {'type': 'opt'})
 	call minpac#add('thinca/vim-quickrun', {'type': 'opt'})
 	call minpac#add('https://git.sansfontieres.com/~romi/eleline.vim')
 	call minpac#add('mattn/emmet-vim', {'type': 'opt'})
-	call minpac#add('tpope/vim-rails', {'type': 'opt'})
-	call minpac#add('tpope/vim-bundler', {'type': 'opt'})
+	call minpac#add('equalsraf/neovim-gui-shim')
 	" Syntax Highlighting
 	call minpac#add('vim-scripts/SyntaxRange')
 	call minpac#add('vim-jp/vim-cpp')
-	call minpac#add('fatih/vim-go')
+	call minpac#add('fatih/vim-go', {'type': 'opt'})
 	call minpac#add('plasticboy/vim-markdown')
 	call minpac#add('rust-lang/rust.vim')
 	call minpac#add('pangloss/vim-javascript')
 	call minpac#add('google/vim-jsonnet')
 	call minpac#add('tbastos/vim-lua')
-	call minpac#add('VaiN474/vim-etlua')
-	call minpac#add('leafo/moonscript-vim')
 	call minpac#add('leafgarland/typescript-vim')
 	call minpac#add('vim-ruby/vim-ruby')
 	call minpac#add('vim-erlang/vim-erlang-runtime')
@@ -63,10 +52,8 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 	call minpac#add('slashmili/alchemist.vim')
 	call minpac#add('neovimhaskell/haskell-vim')
 	call minpac#add('davidoc/taskpaper.vim')
-	call minpac#add('mesonbuild/meson')
 	call minpac#add('lifepillar/vim-colortemplate')
 	call minpac#add('ziglang/zig.vim')
-	call minpac#add('https://tildegit.org/sloum/gemini-vim-syntax', {'do': 'make'})
 endfunction
 filetype plugin indent on
 syntax enable
@@ -78,16 +65,14 @@ command! PackStatus packadd minpac | call minpac#status()
 
 
 " lazy-lazyload
-command! -nargs=* Gina :packadd gina.vim | Gina <f-args>
 command! -nargs=* Startuptime :packadd vim-startuptime | StartupTime <f-args>
 command! -nargs=* QuickRun :packadd vim-quickrun | QuickRun <f-args>
-command! LazyDev :packadd ale | packadd vista.vim | packadd mesonic | packadd vim-dispatch
-command! RailsStuff :packadd vim-rails | packadd vim-bundler
-command! Lhg packadd vim-lawrencium
+command! LazyDev :packadd ale
 augroup PackLazy
 	autocmd!
 	autocmd FileType colortemplate packadd vim-colortemplate
 	autocmd FileType html,css,scss,eruby,etlua,gohtmltmpl packadd emmet-vim
+	autocmd FileType go packadd vim-go
 augroup END
 
 
@@ -95,12 +80,6 @@ augroup END
 let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_frontmatter=1
 let g:jsx_ext_required=0
-
-" Signify
-let g:signify_sign_add='┃'
-let g:signify_sign_change='┃'
-let g:signify_sign_delete='•'
-let g:signify_sign_show_count=0
 
 
 " ALE
@@ -127,16 +106,6 @@ let g:ale_javascript_prettier_options='--config ~/.prettierrc'
 let g:ale_css_prettier_options='--config ~/.prettierrc'
 let g:ale_pascal_ptop_options='-c "$HOME"/.ptop.cfg'
 
-
-" Mesonic
-let g:meson_command = 'meson'
-let g:meson_ninja_command = 'samu' 
-
-
-" Gutentags
-let g:gutentags_cache_dir='~/.vim/cache/gutentags'
-
-
 " incsearch
 map *  <Plug>(asterisk-z*)<Plug>(is-nohl-1)
 map g* <Plug>(asterisk-gz*)<Plug>(is-nohl-1)
@@ -149,11 +118,14 @@ let g:eleline_powerline_fonts = 1
 
 
 " Vista
+let g:vista#renderer#enable_icon = 1
 let g:vista#renderer#icons = {
-\   "function": "ƒ",
-\   "variable": "\uf71b",
+\   "function": "𝖋",
+\   "variable": "𝖝",
+\		"default":  "𝖎",
 \  }
 
+" CtrlP
 
 " »General«
 
@@ -169,7 +141,9 @@ set backupdir=$HOME/.vim/cache/backup
 set directory=$HOME/.vim/cache/swap
 set viewdir=$HOME/.vim/cache/view
 set undodir=$HOME/.vim/cache/undo
-set viminfofile=$HOME/.vim/cache/viminfo
+if !has('nvim')
+	set viminfofile=$HOME/.vim/cache/viminfo
+endif
 set history=100
 
 
@@ -188,10 +162,6 @@ set incsearch
 set ignorecase
 set smartcase
 set path+=**
-
-
-" Normal human slashes
-set shellslash
 
 
 " Better (arguably) grep
@@ -356,15 +326,9 @@ map \ <plug>Sneak_;
 
 
 " GUI specific
-if has('gui_running')
-	nnoremap <silent> <leader>0 :set columns=180<CR>
-	set columns=90
-endif
+nnoremap <silent> <leader>0 :set columns=180<CR>
 
 " Buffer/Tabs management
-nnoremap <C-P> :Clap<CR>
-nnoremap <leader>o :Clap files<CR>
-nnoremap <leader><Tab> :Clap buffers<CR>
 nnoremap <leader>p :bp<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <silent><leader><C-w> :bd!<CR>
@@ -384,7 +348,6 @@ nnoremap <leader>- :Fern . -drawer -toggle -keep<CR>
 
 " Tab browsing
 nnoremap <leader>= :Vista!!<CR>
-nnoremap <leader><S-Tab> :Clap tags<CR>
 
 
 " Open my taskaper
@@ -395,13 +358,6 @@ nnoremap <leader>tas :tabnew \| e $HOME/todo/now.taskpaper<CR>
 vnoremap c <esc>v
 
 
-" External calls
-if has('gui_macvim') && &filetype==#'python'
-	nnoremap <silent> <F9> :!robofont "%:p"<CR>
-	inoremap <silent> <F9> <ESC> :!robofont "%:p"<CR>
-endif
-
-
 " Launch build
 function! BuildScript()
 	set makeprg=./build.sh
@@ -409,6 +365,27 @@ function! BuildScript()
 endfunction
 noremap <F3> :Make<CR>
 inoremap <F3> :Make<CR>
+
+
+" Windows VMWare/Gvim setup
+if has('gui_win32')
+	command! Remote
+				\ let g:ale_command_wrapper='plink -i %UserProfile%\.ssh\sf@XOK9.win.putty.ppk -batch r@kato %*'
+	let g:netrw_cygwin = 0
+	let g:netrw_silent = 1
+	let g:netrw_list_cmd ='plink -i '.$UserProfile.'\\.ssh\\sf@XOK9.win.putty.ppk -batch r@kato ls -Fa '
+	let g:netrw_ssh_cmd  ='plink -batch -T -ssh'
+	let g:netrw_scp_cmd  ='pscp -i '.$UserProfile.'\\.ssh\\sf@XOK9.win.putty.ppk -q'
+	let g:netrw_sftp_cmd ='psftp -i '.$UserProfile.'\\.ssh\\sf@XOK9.win.putty.ppk'
+endif
+
+" netrw as a panel
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_banner = 0
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+nnoremap <leader><Tab> :Vexplore<CR>
 
 
 """"""""""""""""""
@@ -421,43 +398,24 @@ if has('gui_running')
 	set guioptions-=m " use multiple lines for
 	set guioptions-=r " gvim win32
 	set guioptions-=L
-	set guioptions-=e
 	set lines=999
-	if has('gui_macvim')
-		set guifont=PragmataProLiga-Regular:h11
-		set macligatures
-	elseif has('gui_win32')
-		set guifont=PragmataPro_Mono_Liga:h11:cANSI
-		set ffs=unix,dos
-		set linespace=0
-	endif
-	if has('gui_gtk2')
-		set guifont=PragmataPro\ Liga\ 12
-		" Experimental ligatures
-		let g:gtk_nocache=[0x00000000, 0xfc00ffff,0xf8000001, 0x78000001]
-	endif
-elseif (has('termguicolors'))
+endif
+if has('gui_macvim')
+	set guifont=PragmataProLiga-Regular:h11
+	set guioptions-=e
+	set macligatures
+elseif has('gui_win32')
+	set guifont=PragmataPro_Mono_Liga:h11:cANSI
+	set linespace=0
+	set ffs=unix,dos
+	set shellslash
+elseif has('gui_gtk2')
+	set guifont=PragmataPro\ Liga\ 12
+	" Experimental ligatures
+	let g:gtk_nocache=[0x00000000, 0xfc00ffff,0xf8000001, 0x78000001]
+endif
+if (has('termguicolors'))
 	set termguicolors
 endif
 
 colorscheme hito
-
-" Vim-clap theme based on hitodama
-let s:palette={}
-let s:palette.display={'guibg': '#ebebeb'}
-let s:bg0={'guibg': '#cccccc'}
-let s:bg1={'guibg': '#ebebeb'}
-let s:palette.input=s:bg0
-let s:palette.indicator=extend({'guifg':'#858585'}, s:bg0)
-let s:palette.spinner=extend({'guifg':'#db6600', 'gui': 'bold'}, s:bg0)
-let s:palette.search_text=extend({'guifg': '#2a2a2a', 'gui': 'bold'}, s:bg0)
-let s:palette.preview=s:bg1
-
-let s:palette.selected={'guifg': '#3d3d3d', 'gui': 'bold,underline'}
-let s:palette.current_selection=extend({'guifg': '#2a2a2a', 'gui': 'bold'}, s:bg0)
-
-let s:palette.selected_sign={'guifg': '#d11100'}
-let s:palette.current_selection_sign=s:palette.selected_sign
-let g:clap_theme=s:palette
-let g:clap_fuzzy_match_hl_groups=[['64', '#309900'],]
-
