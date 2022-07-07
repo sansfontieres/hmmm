@@ -9,7 +9,6 @@ The zig code in `ninja.zig` generates a `build.ninja` file. To get this mess to
 work, you want to run the following:
 
 ```sh
-; curl https://ziglang.org/download/index.json -o zig.json
 ; zig run ninja.zig
 info: Creating a build.ninja file
 info: You may run samurai :^)
@@ -20,7 +19,7 @@ info: You may run samurai :^)
 
 Of course you can use ninja instead of samurai, but why would you?
 
-The script also generates a `scripts` directory holding scripts that setups
+The zig code also generates a `scripts` directory holding scripts that setups
 installation or configurations when needed.
 
 If zig is not installed, the script `get_zig.sh` takes care of it. The zig code
