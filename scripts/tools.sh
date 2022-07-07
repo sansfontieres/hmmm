@@ -11,3 +11,4 @@ cp zig-out/bin/* "$HOME"/bin
 cd tools/esper
 zig build -Drelease-safe
 cp zig-out/bin/* "$HOME"/bin
+cp bin/* "$HOME"/bin
