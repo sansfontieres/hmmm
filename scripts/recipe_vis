@@ -27,10 +27,10 @@
 
 (os/cd base_dir)
 
-(def lexers (os/dir "configs/vis_lexers"))
+(def lexers (os/dir "config/vis/lexers"))
 
 (each lexer lexers
-  (def lexer_buff (slurp (string/format "configs/vis_lexers/%s" lexer)))
+  (def lexer_buff (slurp (string/format "config/vis/lexers/%s" lexer)))
   (spit (string/format "%s/lexers/%s" vis_dir lexer) lexer_buff))
 
 (def visrc_buff

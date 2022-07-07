@@ -9,9 +9,9 @@ cat << EOF
 
 Update plugins and the colorscheme:
     ; vim '+PackUpdate'
-    ; vim configs/vim_colors/hitodama.colortemplate '+Colortemplate!'
+    ; vim config/vim/theme/hitodama.colortemplate '+Colortemplate!'
     ; mkdir -p "$HOME"/.vim/colors
-    ; mv -i configs/vim_colors/colors/hito.vim "$HOME"/.vim/colors
+    ; mv -i config/vim/theme/colors/hito.vim "$HOME"/.vim/colors
 
 EOF
 
