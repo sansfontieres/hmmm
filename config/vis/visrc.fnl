@@ -8,19 +8,20 @@
 
 (local plugin-vis-open (require :plugins/vis-fzf-open))
 
-(local settings {:markdown ["set et on" "set tw 2" "set cc 73"]
-                 :lua ["set tw 4" "set et off"]
-                 :zig ["set tw 4" "set et on"]
-                 :ansi_c ["set et off" "set tw 8" "set cc 81"]
-                 :cpp ["set et off" "set tw 8" "set cc 81"]
-                 :go ["set et off" "set tw 4"]
-                 :sh ["set et off" "set tw 4"]
-                 :js ["set et on" "set tw 2"]
-                 :html ["set et on" "set tw 2"]
-                 :ruby ["set et on" "set tw 2"]
-                 :css ["set et on" "set tw 2"]
-                 :yaml ["set et on" "set tw 2"]
-                 :python ["set et on" "set tw 4"]})
+(global settings {:markdown ["set et on" "set tw 2" "set cc 73"]
+                  :lua ["set tw 4" "set et off"]
+                  :pascal ["set tw 4" "set et on"]
+                  :zig ["set tw 4" "set et on"]
+                  :ansi_c ["set et off" "set tw 8" "set cc 81"]
+                  :cpp ["set et off" "set tw 8" "set cc 81"]
+                  :go ["set et off" "set tw 4"]
+                  :sh ["set et off" "set tw 4"]
+                  :js ["set et on" "set tw 2"]
+                  :html ["set et on" "set tw 2"]
+                  :ruby ["set et on" "set tw 2"]
+                  :css ["set et on" "set tw 2"]
+                  :yaml ["set et on" "set tw 2"]
+                  :python ["set et on" "set tw 4"]})
 
 (set plugin-vis-open.fzf_path
      "FZF_DEFAULT_COMMAND='rg --files --hidden -g \"!.git/\" -g \"\"' fzf")
