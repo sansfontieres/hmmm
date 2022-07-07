@@ -15,6 +15,7 @@ unsetopt EXTENDED_HISTORY
 setopt INTERACTIVE_COMMENTS
 setopt PROMPT_SUBST
 
+bindkey -e
 
 PROMPT='$(prompt)'
 PATH="$HOME/bin:$HOME/.local/zig:$HOME/.local/zls:$HOME/.local/janet/bin:$PATH"
