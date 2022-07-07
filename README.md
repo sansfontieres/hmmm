@@ -33,6 +33,6 @@ directory takes care of it. Same story with `get_janet.rc` or
 `get_fennel.rc` which will checkout the latest tagged commit from their
 repository.
 
-To build the prompt, run `scripts/pick_prompt.rc` which will compile
-either the prompt in Pascal, Zig, or generate a script that prints a
-simple prompt, depending on available compilers.
+A set of scripts and utilities are in another repository. It can be
+cloned and deployed with `scripts/tools.rc`. It’s mandatory to run it to
+install the shell prompt.
