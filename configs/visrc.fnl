@@ -18,10 +18,8 @@
                  :go ["set et off" "set tw 4"]
                  :sh ["set et off" "set tw 4"]
                  :js ["set et on" "set tw 2"]
-                 :typescript ["set et on" "set tw 2"]
                  :html ["set et on" "set tw 2"]
                  :ruby ["set et on" "set tw 2"]
-                 :scss ["set et on" "set tw 2"]
                  :css ["set et on" "set tw 2"]
                  :yaml ["set et on" "set tw 2"]
                  :python ["set et on" "set tw 4"]})
