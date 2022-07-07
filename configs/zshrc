@@ -17,7 +17,7 @@ setopt PROMPT_SUBST
 
 
 PROMPT='$(prompt)'
-PATH="$PATH:$HOME/bin:$HOME/.local/zig:$HOME/.local/zls:$HOME/.local/janet/bin"
+PATH="$HOME/bin:$HOME/.local/zig:$HOME/.local/zls:$HOME/.local/janet/bin:$PATH"
 
 export EDITOR="$(which vis)"
 export VISUAL=$EDITOR
