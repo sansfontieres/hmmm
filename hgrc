@@ -1,0 +1,43 @@
+[alias]
+untrack=rm -Af
+
+[color]
+desc.here=bold blue
+log.activebookmark=green bold underline
+log.bookmark=green
+log.branch=cyan
+log.description=yellow
+log.summary=yellow
+log.tag=magenta
+mode=auto
+
+[diff]
+git=1
+
+[email]
+from=Romi Hervier <r@sansfontieres.com>
+
+[extensions]
+beautifygraph=
+color=
+convert=
+graphlog=
+hgext.bookmarks=
+hggit=
+histedit=
+patchbomb=
+rebase=
+strip=
+
+[patchbomb]
+flagtemplate={{separate(' ', 'example', flags)}}
+intro=never
+
+[smtp]
+host=smtp.fastmail.com
+port=587
+tls=true
+username=telecom@sansfontieres.com
+
+[ui]
+username=Romi Hervier <r@sansfontieres.com>
