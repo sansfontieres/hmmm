@@ -138,3 +138,14 @@
 
 (set vis.ftdetect.filetypes.janet
      {:ext ["%.janet$"] :cmd ["set syntax janet" "set et on" "set tw 2"]})
+
+(vis:command_register :timestamp
+                      (fn []
+                        (local timestamp
+                               (.. (os.date "%Y-%m-%dT%H:%M:%SZ\n"
+                                            (os.time (os.date :!*t)))
+                                   (string.rep "-" 20)
+                                   "\n"))
+                        (vis.win.file:insert vis.win.selection.pos timestamp))
+                      "Insert the current datetime in the RFC 3339 format")
+(nmap " d" ":timestamp<Enter>")
