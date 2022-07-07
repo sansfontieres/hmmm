@@ -30,15 +30,14 @@ begin
 	write('%{' + #27 + '[32m%}');
 
 	if not local_session() then
-		write(stdout, format('%s:', [getHostName]));
+		write(format('%s:', [getHostName]));
 
 	if rel_home(homedir, getCurrentDir) then
 		path := '~' + copy(getCurrentDir, length(homedir) + 1, length(getCurrentDir))
 	else
 		path := getCurrentDir;
 	
-	write(path);
-	write(reset_code);
+	write(path + reset_code);
 end;
 
 procedure prompt_print(code: integer);
