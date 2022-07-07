@@ -10,7 +10,8 @@
                 {:title "mbsync" :source "mbsyncrc" :target ".mbsyncrc" :directory "email"}
                 {:title "mutt" :source "muttrc" :target ".config/mutt/muttrc" :recipe true :directory "email"} # pm: psi fork
                 {:title "notmuch" :source "notmuch-config" :target ".notmuch-config" :directory "email"}
-                {:title "msmtp" :source "msmtprc" :target ".msmtpcrc" :directory "email"}])
+                {:title "msmtp" :source "msmtprc" :target ".msmtpcrc" :directory "email"}
+                {:title "clang-format" :source "clang-format" :target ".clang-format" :directory "formatters"}])
 
 (def copy_rule
   ``rule copy
