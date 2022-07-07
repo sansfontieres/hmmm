@@ -1,0 +1,101 @@
+[pretty]
+	default =\
+"%C(reset)%H%C(auto)%d%n"\
+"%C(reset)%ai (%ar)%n"\
+"%C(reset)%cn <%C(blue)%ce%C(reset)>%n"\
+"%C(bold)%s%n"\
+"%n%w(76,4,4)%-b%n"
+	shorter =\
+"%C(magenta)%h  %C(reset)%ar  %cn <%C(blue)%ce%C(reset)> %C(auto)%d%n"\
+"         %C(bold)%s%n"
+
+
+[alias]
+	ap = add -p
+	ai = add -i
+	ch = diff --cached
+	ci = commit
+	pu = push
+	pf = push --force-with-lease
+	pl = pull
+	dt = difftool
+	st = status --short --branch
+	rb = rebase -i --autosquash
+	fix = commit --fixup
+	sw = switch
+	ohno = checkout HEAD --
+	bruh = reset --hard
+	count = rev-list --count HEAD
+	grepc = rev-list --count HEAD --grep
+	lg = log --pretty=default
+	sl = log --pretty=shorter
+	glog = log --graph --all --pretty=default
+	slog = log --graph --all --pretty=shorter
+	greplog = log --all --pretty=default --grep
+	lc = log -1 --stat --patch --pretty=default
+
+[diff]
+	algorithm = patience
+	tool = vimdiff
+	colorMoved = zebra
+
+[difftool]
+	prompt = false
+
+[color "diff"]
+	meta = white
+	frag = magenta
+	old = red bold
+	new = green bold
+	oldMoved = blue
+	newMoved = blue
+
+[init]
+	defaultBranch = front
+
+[pull]
+	rebase = true
+
+[push]
+	followTags = true
+
+[transfer]
+	fsckobjects = true
+
+[user]
+	email = r@sansfontieres.com
+	name = Romi Hervier
+
+[sendemail]
+	smtpencryption = ssl
+	smtpserver = smtp.fastmail.com
+	smtpserverport = 565
+	smtpuser = telecom@sansfontieres.com
+	annotate = yes
+	suppresscc = self
+
+[tig]
+	ignore-case = smart-case
+	mouse = true
+	main-view-id-display = true
+	main-view-commit-title-graph = v2
+	line-graphics = utf-8
+	main-view-date-display = relative
+
+[tig "color"]
+	cursor = default black
+	date = blue default
+
+[core]
+	pager = delta --light
+
+[delta]
+	features = decoration
+	side-by-side = true
+	line-numbers = true
+
+[delta "decoration"]
+	syntax-theme = Hito light
+	hunk-header-decoration-style = none box
+	file-decoration-style = none
+	file-style = none bold ul

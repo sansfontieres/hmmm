@@ -1,0 +1,30 @@
+# Shades
+bg_0:  "ffffff"
+bg_1:  "ebebeb"
+bg_2:  "cccccc"
+md_0:  "858585"
+md_1:  "5c5c5c"
+fg_0:  "3d3d3d"
+fg_1:  "2a2a2a"
+
+# Accents
+red:     "d11100"
+green:   "309900"
+yellow:  "c79800"
+blue:    "0063db"
+magenta: "d4008d"
+cyan:    "00b8a5"
+
+# Bright Accents
+bred:     "b80f00" 
+bgreen:   "218f00"
+byellow:  "b38900"
+bblue:    "0059d2"
+bmagenta: "b8007a"
+bcyan:    "009485"
+
+
+# Specials
+orange:    "db6600"
+gold:      "846d21"
+specials:  "fed200"

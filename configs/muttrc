@@ -1,0 +1,75 @@
+set mbox_type=maildir
+set folder = "~/mail"
+set spoolfile = "=INBOX"
+set postponed = "=Drafts"
+set trash="=Trash"
+unset record # Fastmail takes care of it
+set header_cache="~/.cache/mutt"
+set crypt_use_gpgme=no
+set sendmail="msmtp --read-recipients --read-envelope-from"
+set timeout=10
+
+
+set edit_headers=yes
+set send_charset="us-ascii:utf-8"
+my_hdr User-Agent: PsiMutt
+set attribution="Quoth %n <%a>:"
+
+set realname="Romi Hervier"
+set from="r@sansfontieres.com"
+set use_from=yes
+set markers=no
+set sort="threads"
+set strict_threads=yes
+set sort_browser="reverse-date"
+set sort_aux="last-date-received"
+unset collapse_unread
+bind index - collapse-thread
+bind index _ collapse-all
+set index_format="%2C %Z %D %-17.17n %s"
+set pager_format="[%C/%m] %n: %s"
+set date_format="%Y-%m-%d %k:%M"
+
+set help=no
+color index blue default ~P
+color sidebar_new brightyellow black
+color indicator magenta brightblack
+color hdrdefault black white
+color quoted green default 
+
+set sidebar_width=20
+set sidebar_visible=yes
+set sidebar_divider_char='│'
+
+mailboxes =INBOX =Sent =Todo =Archive =Feed =Drafts =sr.ht-discuss =OpenBSD =9 =Miscs-Lists =Lobsters =Trash =Jobs =Spam
+
+set mailcap_path = "~/.config/mutt/mailcap"
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+set editor="vis +'set syntax email'"
+set pager_stop=yes
+set pager_index_lines=10
+bind pager j next-line
+bind pager k previous-line
+bind pager J next-entry
+bind pager K previous-entry
+macro index,pager S <sync-mailbox>
+
+macro index,pager > \
+"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+<shell-escape>notmuch-mutt -r --prompt search<enter>\
+<change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
+<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+"notmuch: search mail"
+
+macro index,pager . \
+"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+<pipe-message>notmuch-mutt -r thread<enter>\
+<change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
+<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+"notmuch: reconstruct thread"
+
+bind index <up>    sidebar-prev
+bind index <down>  sidebar-next
+bind index <space> sidebar-open

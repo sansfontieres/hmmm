@@ -1,0 +1,22 @@
+IMAPAccount fastmail
+Host imap.fastmail.com
+User telecom@sansfontieres.com
+PassCmd "echo $FM_PASS"
+SSLType IMAPS
+
+MaildirStore local
+Path ~/mail/
+INBOX ~/mail/INBOX
+SubFolders Verbatim
+
+IMAPStore fastmail
+Account fastmail
+
+Channel primary
+Far :fastmail:
+Near :local:
+Patterns *
+Expunge Both
+CopyArrivalDate yes
+SyncState *
+Create Near

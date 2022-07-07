@@ -1,0 +1,152 @@
+Full name:   Hitodama
+Short name:  hito
+Author:      Romi Hervier <r@sansfontieres.com>
+Description: A normal human light theme.
+
+Background: light
+; Shades
+Color:    bg_0        #ffffff    231
+Color:    bg_1        #ebebeb    254
+Color:    bg_2        #cccccc    188
+Color:    md_0        #858585    102
+Color:    md_1        #5c5c5c    59
+Color:    fg_0        #3d3d3d    59
+Color:    fg_1        #2a2a2a    16
+
+; Accents
+Color:    red         #d11100    160
+Color:    green       #309900    64
+Color:    yellow      #c79800    172
+Color:    blue        #0063db    26
+Color:    magenta     #d4008d    162
+Color:    cyan        #00b8a5    37
+
+; Bright Accents
+Color:    bred        #b80f00    124
+Color:    bgreen      #218f00    28
+Color:    byellow     #b38900    136
+Color:    bblue       #0059d2    26
+Color:    bmagenta    #b8007a    126
+Color:    bcyan       #009485    30
+
+; Specials
+Color:    gold        #846d21    94
+Color:    specials    #fed200    220
+Color:    orange      #db6600    166
+
+Background: light
+Neovim:     yes
+
+;
+; Terminal Colour Palette
+;
+
+Term colors: bg_1    red         green    yellow
+Term colors: blue    magenta     cyan     md_0
+Term colors: bg_2    bred        bgreen   byellow
+Term colors: bblue   bmagenta    bcyan    fg_1
+
+;
+; Highlighting
+;
+
+Normal         fg_0        bg_0
+Cursor         bg_0        fg_0
+None           fg_0        bg_0
+
+;
+; Vim Interface
+;
+
+CursorLineNr   fg_0        bg_1
+EndOfBuffer    bg_0        bg_0
+FoldColumn     md_0        none
+Folded         md_1        bg_2
+LineNr         md_0        none
+MatchParen     bg_0        orange
+MatchWord      bg_0        orange
+SignColumn     md_0        none
+Signify        blue        none
+
+Ignore         md_0        none
+
+Pmenu          fg_0        bg_1
+PmenuSbar      bg_1        bg_1
+PmenuSel       bg_0        blue
+PmenuThumb     bg_2        bg_2
+
+ErrorMsg       yellow      none
+ModeMsg        md_1        none
+MoreMsg        magenta     none
+Question       magenta     none
+WarningMsg     bred        none
+
+ColorColumn    none        bg_1
+CursorColumn   none        bg_1
+CursorLine     none        bg_1
+
+QuickFixLine   bg_0        blue
+StatusLine     fg_0        bg_1
+StatusLineNC   fg_0        bg_2
+TabLine        fg_0        bg_0
+TabLineFill    fg_0        bg_0
+TabLineSel     bg_0        fg_0
+VertSplit      fg_0        bg_0
+WildMenu       bg_0        blue
+
+IncSearch      bg_1        md_0
+Search         fg_0        specials
+Visual         none        specials
+
+DiffAdd        green       bg_1
+DiffChange     none        none
+DiffDelete     red         bg_1
+DiffText       none        yellow
+
+;
+; Syntax
+;
+
+Comment        bgreen      none
+Error          bred        bg_1
+PreProc        none        none
+Special        none        none      italic
+Statement      none        none      bold
+
+LibraryIdent   none        none      underline,bold
+Character      md_1        none
+Directory      md_1        none
+Number         md_1        none
+String         blue        none
+Title          md_1        none         bold
+Todo           md_1        none         bold
+Underlined     none        none         underline
+
+SpellBad       none        none         undercurl
+SpellCap       none        none         undercurl
+SpellLocal     none        none         undercurl
+SpellRare      none        none         undercurl
+
+Delimiter      md_1        none
+
+Include: _links
+
+; ALE
+ALEErrorSign   red         none         bold
+ALEWarningSign yellow      none         bold
+; COC
+CocErrorSign   red         none         bold
+CocWarningSign yellow      none         bold
+CocInfoSign    blue        none         bold
+CocHintSign    blue        none         bold
+
+
+; Sneak
+Sneak          bg_0       bmagenta
+
+; eleline
+ElelineBufnrWinnr   bred        none
+ElelineTotalBuf     md_1        none
+ElelinePaste        bg_0        byellow
+ElelineFsize        md_1        none
+ElelineCurFname     blue        none        bold

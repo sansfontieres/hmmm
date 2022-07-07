@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+mkdir -p "$HOME"/.config/mutt
+printf "text/html; w3m -I %%{charset} -T text/html; copiousoutput;\n" > "$HOME"/.config/mutt/mailcap

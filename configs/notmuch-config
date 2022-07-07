@@ -1,0 +1,15 @@
+[database]
+
+[user]
+name=Romi Hervier
+primary_email=r@sansfontieres.com
+other_email=
+
+[new]
+tags=
+
+[search]
+exclude_tags=deleted;spam;
+
+[maildir]
+synchronize_flags=true

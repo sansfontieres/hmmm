@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+mkdir -p "$HOME"/.config/bat/themes
+cp configs/bat_colors/hito.tmTheme "$HOME"/.config/bat/themes/Hito\ light.tmTheme

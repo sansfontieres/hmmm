@@ -1,5 +1,5 @@
 zig-*/
 build.ninja
 .ninja_*
-scripts/
-vim_colors/colors/
+tools/
+configs/vim_colors/colors/

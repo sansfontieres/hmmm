@@ -1,0 +1,21 @@
+#!/bin/sh
+
+mkdir -p "$HOME"/.vim/pack/minpac/opt/
+git clone https://github.com/k-takata/minpac.git "$HOME"/.vim/pack/minpac/opt/minpac
+
+set -e
+
+cat << EOF
+
+Update plugins and the colorscheme:
+    ; vim '+PackUpdate'
+    ; vim configs/vim_colors/hitodama.colortemplate '+Colortemplate!'
+    ; mkdir -p "$HOME"/.vim/colors
+    ; mv -i configs/vim_colors/colors/hito.vim "$HOME"/.vim/colors
+
+EOF
+
+mkdir -p "$HOME"/.local/zls
+cd "$HOME"/.local/zls
+curl -L https://github.com/zigtools/zls/releases/download/0.1.0/x86_64-linux.tar.xz -o /tmp/zls.tar.xz 
+tar -xJf /tmp/zls.tar.xz --strip-components=1 -C .
