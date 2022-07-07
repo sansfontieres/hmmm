@@ -17,7 +17,7 @@ setopt PROMPT_SUBST
 
 bindkey -e
 
-PROMPT='$(prompt)'
+PROMPT='$(prompt $?)'
 PATH="$HOME/bin:$HOME/.local/zig:$HOME/.local/zls:$HOME/.local/janet/bin:$HOME/.local/fennel/bin::$PATH"
 
 export EDITOR="$(which vis)"
