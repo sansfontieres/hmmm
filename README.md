@@ -1,10 +1,10 @@
-# Editable Text Configuration
-
+Editable Text Configuration
+===========================
 > Or dotfiles as they say 👴
 
 
-## How does this work ??
-
+How does this work ??
+---------------------
 You need janet to run the script `ninja.janet`, which generates a
 `build.ninja` file. To get this mess to work, you want to run the
 following:
@@ -24,11 +24,12 @@ Of course you can use ninja instead of samurai, or even move those files
 yourself :^) <!-- lol -->
 
 
-## Setup
-
+Setup
+-----
 If zig is not installed, the script `get_zig.sh` takes care of it. Same
 story with `get_janet.sh` or `get_fennel.sh` which will checkout the
 lattest tagged commit from their repository.
 
-The zsh prompt comes from `prompt.zig`. Run `zig build -Drelease-safe`
-to generate the binary.
+To build the prompt, run `scripts/pick_prompt.sh` which will compile
+either the prompt in Pascal, Zig, or generate a script that prints a
+simple prompt, depending on available compilers.
