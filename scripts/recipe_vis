@@ -1,4 +1,5 @@
 #!/usr/bin/env janet
+# vim: set ft=janet noet
 
 (def repos ["https://github.com/lutobler/vis-modelines"
 			         "https://github.com/jocap/vis-filetype-settings"
@@ -36,6 +37,3 @@
 (spit (string/format "%s/themes/hito.lua" vis_dir) hito_buff)
 
 (print "info: vis plugins, lexers and theme are installed :^)")
-
-# vim: set ft=clojure noet
-
