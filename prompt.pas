@@ -1,11 +1,11 @@
 // Just fun throwaway code as my prompt
 program prompt;
 
-uses
-	SysUtils, unix;
+uses SysUtils, unix;
 
-var
-	code: integer = 0;
+const reset_code: string = '%{' + #27 + '[0m%}';
+
+var code: integer = 0;
 
 function local_session(): boolean;
 begin
@@ -13,8 +13,7 @@ begin
 end;
 
 function rel_home(homedir, cwd: string): boolean;
-var
-	i: integer;
+var i: integer;
 begin
 	if length(homedir) <= length(cwd) then
 		i := compareStr(homedir, copy(cwd, 0, length(homedir)));
@@ -34,12 +33,12 @@ begin
 		write(stdout, format('%s:', [getHostName]));
 
 	if rel_home(homedir, getCurrentDir) then
-		path := '~' + copy(getCurrentDir, length(homedir)+1, length(getCurrentDir))
+		path := '~' + copy(getCurrentDir, length(homedir) + 1, length(getCurrentDir))
 	else
 		path := getCurrentDir;
 	
 	write(path);
-	write('%{' + #27 + '[0m%}');
+	write(reset_code);
 end;
 
 procedure prompt_print(code: integer);
@@ -47,7 +46,7 @@ begin
 	if code = 0 then
 		write('; ')
 	else
-		write('%{' + #27 + '[31m%};%{' + #27 + '[0m%} ');
+		write('%{' + #27 + '[31m%};' + reset_code + ' ');
 end;
 
 begin
