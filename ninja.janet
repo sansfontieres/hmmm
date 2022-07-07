@@ -3,7 +3,7 @@
 (def packages @[{:title "mercurial" :source "hgrc" :target ".config/hg/hgrc" :recipe false} # pm: hg-git
                 {:title "git" :source "gitconfig" :target ".config/git/config" :recipe false} # pm: git-delta
                 {:title "zsh" :source "zshrc" :target ".zshrc" :recipe false}
-                {:title "vis" :source "visrc.lua" :target ".config/vis/visrc.lua" :recipe true}
+                {:title "vis" :source "visrc.fnl" :target ".config/vis/visrc.fnl" :recipe true}
                 {:title "vim" :source "vimrc" :target ".vimrc" :recipe true} # pm: gvim-huge OR macvim +huge
                 {:title "tmux" :source "tmux.conf" :target ".tmux.conf" :recipe false}
                 {:title "bat" :source "bat" :target ".config/bat/config" :recipe true}
@@ -14,11 +14,11 @@
 
 (def copy_rule
   ``rule copy
-  command = cp $in $out``)
+    command = cp $in $out``)
 
 (def recipe_rule
   ``rule exe
-  command = $in``)
+    command = $in``)
 
 (def home (os/getenv "HOME"))
 

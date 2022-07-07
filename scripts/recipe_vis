@@ -33,7 +33,12 @@
   (def lexer_buff (slurp (string/format "configs/vis_lexers/%s" lexer)))
   (spit (string/format "%s/lexers/%s" vis_dir lexer) lexer_buff))
 
-(def hito_buff (slurp "configs/vis_colors/hito.lua"))
-(spit (string/format "%s/themes/hito.lua" vis_dir) hito_buff)
+(def visrc_buff
+``
+require('vis')
+local fennel = require("fennel")
+local config = fennel.dofile("%s/visrc.fnl")
+``)
+(spit (string/format "%s/visrc.lua" vis_dir) (string/format visrc_buff vis_dir ))
 
 (print "info: vis plugins, lexers and theme are installed :^)")
