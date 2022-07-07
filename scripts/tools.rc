@@ -1,11 +1,12 @@
-#!/bin/sh
+#!/usr/local/plan9/bin/rc
 
 mkdir -p tools
+
 git clone https://git.sansfontieres.com/~romi/esper tools/esper
 
-set -e
+flag e +
 
 cd tools/esper
 zig build -Drelease-safe
-cp zig-out/bin/* "$HOME"/bin
-cp bin/* "$HOME"/bin
+cp zig-out/bin/* $home/bin
+cp bin/* $home/bin

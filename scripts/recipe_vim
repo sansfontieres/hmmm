@@ -1,9 +1,11 @@
-#!/bin/sh
+#!/usr/local/plan9/bin/rc
+# vim: set ft=rc
 
-mkdir -p "$HOME"/.vim/pack/minpac/opt/
-git clone https://github.com/k-takata/minpac.git "$HOME"/.vim/pack/minpac/opt/minpac
+target = $home/.vim/pack/minpac/opt
+mkdir -p $target
+git clone https://github.com/k-takata/minpac.git $target
 
-set -e
+flag e +
 
 cat << EOF
 
@@ -15,7 +17,13 @@ Update plugins and the colorscheme:
 
 EOF
 
-mkdir -p "$HOME"/.local/zls
-cd "$HOME"/.local/zls
-curl -L https://github.com/zigtools/zls/releases/download/0.1.0/x86_64-linux.tar.xz -o /tmp/zls.tar.xz 
-tar -xJf /tmp/zls.tar.xz --strip-components=1 -C .
+target = /tmp/zls.tar.xz
+dest = $home/.local/zls
+
+rm -rf $dest
+mkdir -p $dest
+
+curl -L https://github.com/zigtools/zls/releases/download/0.1.0/x86_64-linux.tar.xz -o $target
+tar -xJf $target --strip-components=1 -C $dest
+
+rm -rf $target

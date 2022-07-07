@@ -5,18 +5,18 @@ Editable Text Configuration
 
 How does this work ??
 ---------------------
-You need janet to run the script `ninja.janet`, which generates a
+You need janet to run the script `scripts/ninja.rc`, which generates a
 `build.ninja` file. To get this mess to work, you want to run the
 following:
 
 ```sh
-; ./ninja.janet
+; ./scripts/ninja.rc
 info: You may run samurai :^)
 ; samu
 [1/5] cp hgrc /home/r/.config/hg/hgrc
 --8<--
 ; samu recipe-vis
-[1/1] scripts/recipe_vis
+[1/1] ./scripts/recipe_vis
 --8<--
 ```
 
@@ -26,10 +26,13 @@ yourself :^) <!-- lol -->
 
 Setup
 -----
-If zig is not installed, the script `get_zig.sh` takes care of it. Same
-story with `get_janet.sh` or `get_fennel.sh` which will checkout the
-lattest tagged commit from their repository.
+To get plan9port, (needed for `rc`) run `get_plan9port.sh`.
 
-To build the prompt, run `scripts/pick_prompt.sh` which will compile
+If zig is not installed, the script `get_zig.rc` in the `scripts`
+directory takes care of it. Same story with `get_janet.rc` or
+`get_fennel.rc` which will checkout the latest tagged commit from their
+repository.
+
+To build the prompt, run `scripts/pick_prompt.rc` which will compile
 either the prompt in Pascal, Zig, or generate a script that prints a
 simple prompt, depending on available compilers.

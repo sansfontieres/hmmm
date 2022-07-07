@@ -1,0 +1,25 @@
+#!/usr/local/plan9/bin/rc
+flag e +
+
+target = /tmp/fennel
+PREFIX= $home/.local/fennel
+vis_dir = $home/.config/vis
+
+git clone https://git.sr.ht/~technomancy/fennel $target
+cd $target
+
+tag = `{git describe --tags `{git rev-list --tags --max-count=1}}
+git checkout $tag
+
+make
+make install
+
+mkdir -p $vis_dir
+cp fennel.lua $vis_dir
+
+git clone https://git.sr.ht/~technomancy/fnlfmt
+cd fnlfmt
+make
+cp fnlfmt $home/bin
+
+rm -rf $target

@@ -1,27 +1,28 @@
-#!/usr/bin/env janet
-# vim: set ft=janet
+#!/usr/local/plan9/bin/rc
+# vim: set ft=rc
 
-(def repos ["https://github.com/lutobler/vis-modelines"
-            "https://github.com/jocap/vis-filetype-settings"
-            "https://repo.or.cz/vis-quickfix.git"
-            "https://github.com/lutobler/vis-commentary"
-            "https://github.com/erf/vis-sneak"
-            "https://github.com/sansfontieres/vis-fzf-open"
-            "https://github.com/kupospelov/vis-ctags"
-            "https://github.com/maciejjan/vis-tmux-repl"
-            "https://repo.or.cz/vis-goto-file.git"])
+repos = (\
+https://github.com/lutobler/vis-modelines \
+https://github.com/jocap/vis-filetype-settings \
+https://repo.or.cz/vis-quickfix.git \
+https://github.com/lutobler/vis-commentary \
+https://github.com/erf/vis-sneak \
+https://github.com/sansfontieres/vis-fzf-open \
+https://github.com/kupospelov/vis-ctags \
+https://github.com/maciejjan/vis-tmux-repl \
+https://repo.or.cz/vis-goto-file.git)
 
-(def vis_dir (string/format "%s/.config/vis" (os/getenv "HOME")))
-(def base_dir (os/cwd))
+vis_dir = $home/.config/vis
+target = $vis_dir/plugins
 
-(os/cd vis_dir)
+mkdir -p $vis_dir/themes
+mkdir -p $vis_dir/lexers
+mkdir -p $target
 
-(os/mkdir "themes")
-(os/mkdir "lexers")
-(os/mkdir "plugins")
+cd $target
+for(r in $repos) git clone $r
 
-(os/cd "plugins")
-
+exit
 (each repo repos (os/shell (string/format "git clone %s" repo)))
 
 (os/cd base_dir)

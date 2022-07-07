@@ -1,0 +1,19 @@
+#!/usr/local/plan9/bin/rc
+flag e +
+
+target = /tmp/janet
+PREFIX= $home/.local/janet
+
+git clone https://github.com/janet-lang/janet $target
+cd $target
+
+tag = `{git describe --tags `{git rev-list --tags --max-count=1}}
+git checkout $tag
+
+make
+make test
+make install
+make install-jpm-git
+
+rm -rf $target
+

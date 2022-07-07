@@ -1,0 +1,16 @@
+#!/usr/local/plan9/bin/rc
+flag e +
+
+if(test -f `{which zig}) compiler = zig
+if(test -f `{which fpc}) compiler = fpc
+if(~ $#compiler 0){ echo 'printf "; "' > $home/bin/prompt; exit }
+
+switch($compiler){
+case zig
+	zig build-exe -Drelease-safe prompt.zig
+case fpc
+	fpc -O2 prompt
+}
+
+cp prompt $home/bin
+

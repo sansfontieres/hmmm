@@ -18,8 +18,14 @@ setopt PROMPT_SUBST
 bindkey -e
 
 PROMPT='$(prompt $?)'
-PATH="$HOME/bin:$HOME/.local/zig:$HOME/.local/zls:$HOME/.local/janet/bin:$HOME/.local/fennel/bin::$PATH"
 
+PLAN9=/usr/local/plan9
+
+PATH="$HOME/bin:$HOME/.local/zig:$HOME/.local/zls:$HOME/.local/janet/bin:$HOME/.local/fennel/bin:$PATH:$PLAN9/bin"
+
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
+
+# On macOS or BSDs, force the name collision if the package manager doesn’t
 export EDITOR="$(which vis)"
 export VISUAL=$EDITOR
 

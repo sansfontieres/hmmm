@@ -1,0 +1,32 @@
+#!/usr/local/plan9/bin/rc
+flag e +
+
+os = `{uname}
+if(~ $os Darwin) os = macos
+
+query = $os-`{uname -m}
+if(~ $query macos-arm64) query = $os-aarch64
+
+infos = `{curl -s https://ziglang.org/download/index.json | grep -iA1 builds/zig-$query | awk '{print $2}' | ssam 's/[",]//g'}
+
+url = `{echo $infos | ssam 'x/\ / c/\n/' | ssam -n 1p}
+shasum = `{echo $infos | ssam 'x/\ / c/\n/' | ssam -n 2p}
+target = /tmp/zig.tar.xz
+dest = $home/.local/zig
+
+echo Downloading latest’s build tarball...
+curl --progress-bar $url -o $target
+
+echo Comparing checksums...
+echo $shasum $target | sha256sum --check --strict
+
+echo Replacing the old zig installation...
+rm -rf $dest
+mkdir -p $dest
+tar -xvJf $target -C $dest --strip-components=1
+
+echo DONE
+which zig
+zig version
+
+rm -rf $target

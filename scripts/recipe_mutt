@@ -1,8 +1,7 @@
-#!/usr/bin/env janet
-# vim: set ft=janet
+#!/usr/local/plan9/bin/rc
+# vim: set ft=rc
 
-(def mutt_dir
-  (string/format "%s/.config/mutt" (os/getenv "HOME")))
-(def mailcap "text/html; w3m -I %%{charset} -T text/html; copiousoutput;\n")
-(os/mkdir mutt_dir)
-(spit (string/format "%s/mailcap" mutt_dir) mailcap)
+mutt_dir = $home/.config/mutt
+mkdir -p $mutt_dir
+echo 'text/html; w3m -I %%{charset} -T text/html; copiousoutput;' > $mutt_dir/mailcap
+

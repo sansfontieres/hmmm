@@ -1,0 +1,47 @@
+#!/usr/local/plan9/bin/rc
+flag e +
+
+dir = `{pwd}
+
+file = $dir/build.ninja
+
+rm -rf $file
+
+fn fp_pack {
+  title     = $p(1)
+  source    = $p(2)
+  target    = $p(3)
+  recipe    = $p(4)
+  directory = $p(5)
+
+  if(~ $#directory 0) directory = $title
+
+  echo build $home/$target: copy config/$directory/$source >> $file
+  echo build $title: phony $home/$target >> $file
+  echo default $title >> $file
+
+  if(~ $recipe 0) ;
+  if not echo build recipe-$title: exe scripts/recipe_$title >> $file
+}
+
+cat << EOF >> $file
+rule copy
+  command = cp $$in $$out
+rule exe
+  command = $$in
+EOF
+
+p = (mercurial hgrc .config/hg/hgrc 0)                     fp_pack
+p = (git gitconfig .config/git/config 0)                   fp_pack
+p = (zsh zshrc .zshrc 0)                                   fp_pack
+p = (vis visrc.fnl .config/vis/visrc.fnl 1)                fp_pack
+p = (vim vimrc .vimrc 1)                                   fp_pack
+p = (tmux tmux.conf .tmux.conf 0)                          fp_pack
+p = (bat batrc .config/bat/config 1)                       fp_pack
+p = (mbsync mbsyncrc .mbsyncrc 0 email)                    fp_pack
+p = (mutt muttrc .config/mutt/muttrc 1 email)              fp_pack
+p = (notmuch notmuch-config .notmuch-config 0 email)       fp_pack
+p = (msmtp msmtprc .msmtprc 0 email)                       fp_pack
+p = (clang-format clang-format .clang-format 0 formatters) fp_pack
+
+echo 'You may run samu now :^)'
