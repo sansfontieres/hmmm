@@ -27,8 +27,8 @@ yourself :^) <!-- lol -->
 ## Setup
 
 If zig is not installed, the script `get_zig.sh` takes care of it. Same
-story with `get_janet.sh` which will checkout the lattest tagged commit
-from the janet repository.
+story with `get_janet.sh` or `get_fennel.sh` which will checkout the
+lattest tagged commit from their repository.
 
 The zsh prompt comes from `prompt.zig`. Run `zig build -Drelease-safe`
 to generate the binary.
