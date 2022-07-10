@@ -1,0 +1,27 @@
+</$objtype/mkfile
+
+all = $home/lib/profile $home/lib/plumbing $home/lib/git $home/lib/bin /cfg/$sysname
+
+all:V: $all
+
+clean:V:
+	rm -rf $all
+
+$home/lib/profile: profile
+	cp $prereq $target
+
+$home/lib/plumbing: plumbing
+	cp $prereq $target
+
+$home/lib/git: git
+	rm -rf $target
+	clone $prereq $target
+
+$home/lib/bin: bin
+	rm -rf $target
+	clone $prereq $target
+
+/cfg/$sysname: cfg/$sysname
+	rm -rf $target
+	clone $prereq $target
+

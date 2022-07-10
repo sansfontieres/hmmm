@@ -1,0 +1,13 @@
+#!/bin/rc
+# Create the mail header that contains the from field
+# A lazy way to handle aliases on Fastmail
+
+header=/mail/box/$user/headers
+switch($1) {
+case r  # My day-to-day email address ;)
+	echo 'From: romi <r@grtsk.net>' > $header
+case rh # My dev email address :^)
+	echo 'From: Romi Hervier <r@sansfontieres.com>' > $header
+case *
+	echo No.
+}
