@@ -20,6 +20,8 @@ $home/lib/git: git
 $home/lib/bin: bin
 	rm -rf $target
 	clone $prereq $target
+	bind -qa $home/lib/bin /bin
+	bind -qa $home/lib/bin/git /bin/git/
 
 /cfg/$sysname: cfg/$sysname
 	rm -rf $target

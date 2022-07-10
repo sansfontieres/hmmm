@@ -1,7 +1,20 @@
 bind -qa $home/bin/rc /bin
 bind -qa $home/bin/$cputype /bin
 bind -qa $home/lib/bin /bin
-font=/lib/font/bit/vga/unicode.font
+bind -qa $home/lib/bin/git /bin/git/
+fontlib=/lib/font/lib/bit
+font=$fontlib/terminus/unicode.14.font
+
+mailserver=fastmail.com
+mailuser=telecom@sansfontieres.com
+maildirs=(Sent 9 Bookmarks Feed Miscs-Lists OpenBSD sr.ht-discuss Todo Archive)
+
+fn open_mailboxes {
+	upas/fs -f /imaps/imap.$mailserver/$mailuser
+	for(i in $maildirs){
+		upas/fs -f /imaps/imap.$mailserver/$mailuser/$i
+	}
+}
 
 fn setup_secstore{ # see /cfg/$sysname/termrc
 	secstore=tcp!127.0.0.1!5356
@@ -10,12 +23,12 @@ fn setup_secstore{ # see /cfg/$sysname/termrc
 }
 
 fn wifi{
-	grep node '#'l1/ether1/ifstats
-	echo -n 'essid=
+	grep node '#l1'/ether1/ifstats
+	echo -n 'essid='
 	essid=`{dd -bs 64 -count 1 >[2]/dev/null}
 	bind -a '#l1' /net
 	aux/wpa -s $essid -p /net/ether1
-	ip/ipconfig/ether /net/ether1
+	ip/ipconfig ether /net/ether1
 }
 
 switch($service){

@@ -1,0 +1,3 @@
+#!/bin/rc
+
+git/walk -f M -f A -f R $*
