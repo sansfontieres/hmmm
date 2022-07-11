@@ -2,8 +2,8 @@ bind -qa $home/bin/rc /bin
 bind -qa $home/bin/$cputype /bin
 bind -qa $home/lib/bin /bin
 bind -qa $home/lib/bin/git /bin/git/
-fontlib=/lib/font/lib/bit
-font=$fontlib/terminus/unicode.14.font
+fontlib=/lib/font/bit
+font=$fontlib/pragmata/pragmatta.14.font
 
 mailserver=fastmail.com
 mailuser=telecom@sansfontieres.com

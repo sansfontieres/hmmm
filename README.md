@@ -1,5 +1,6 @@
-Homedir
-=======
+hmmm
+====
+> hmmm or home? We’ll never know.
 
 A set of configuration files and scripts that I carry with me on macOS,
 Linux and 9front. Nothing exciting.
@@ -9,8 +10,8 @@ $home/lib (9front)
 ------------------
 > I'm giving you a night call to tell you there’s bugs in my computer
 
-My 9front configs, scripts, and patches. Copy/clone the `lib` directory
-in `$home/lib` and voilà!
+My 9front configs, scripts, and patches. Run `mk` to get started and
+reboot. Third party tools can be fetched with the `fetch` script.
 
 
 Editable Text Configuration (unix)

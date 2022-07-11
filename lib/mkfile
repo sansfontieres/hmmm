@@ -1,6 +1,6 @@
 </$objtype/mkfile
 
-all = $home/lib/profile $home/lib/plumbing $home/lib/git $home/lib/bin /cfg/$sysname
+all = $home/lib/profile $home/lib/plumbing $home/lib/git $home/lib/bin /cfg/$sysname $objtype/bin/prompt
 
 all:V: $all
 
@@ -17,6 +17,10 @@ $home/lib/git: git
 	rm -rf $target
 	clone $prereq $target
 
+$home/lib/themes: themes
+	rm -rf $target
+	clone $prereq $target
+
 $home/lib/bin: bin
 	rm -rf $target
 	clone $prereq $target
@@ -27,3 +31,8 @@ $home/lib/bin: bin
 	rm -rf $target
 	clone $prereq $target
 
+/$objtype/bin/prompt: prompt.$O
+	$LD -o $target $prereq
+
+%.$O: %.c
+	$CC $CFLAGS src/$stem.c
