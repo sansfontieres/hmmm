@@ -2,8 +2,15 @@ bind -qa $home/bin/rc /bin
 bind -qa $home/bin/$cputype /bin
 bind -qa $home/lib/bin /bin
 bind -qa $home/lib/bin/git /bin/git/
-fontlib=/lib/font/bit
-font=$fontlib/pragmata/pragmatta.14.font
+
+fontlib=$home/lib/font/bit
+fontsize=14
+monospace=$fontlib/pragmata/pragmata.$fontsize.font
+fontsize=16
+sans=$fontlib/inter/inter.$fontsize.font
+font=$sans
+
+domain=grtsk.com
 
 mailserver=fastmail.com
 mailuser=telecom@sansfontieres.com
@@ -12,7 +19,7 @@ maildirs=(Sent 9 Bookmarks Feed Miscs-Lists OpenBSD sr.ht-discuss Todo Archive)
 fn open_mailboxes {
 	upas/fs -f /imaps/imap.$mailserver/$mailuser
 	for(i in $maildirs){
-		upas/fs -f /imaps/imap.$mailserver/$mailuser/$i
+		echo open /imaps/imap.$mailserver/$mailuser/$i $i > /mail/fs/ctl &
 	}
 }
 
@@ -25,7 +32,7 @@ fn setup_secstore{ # see /cfg/$sysname/termrc
 fn wifi{
 	grep node '#l1'/ether1/ifstats
 	echo -n 'essid='
-	essid=`{dd -bs 64 -count 1 >[2]/dev/null}
+	essid=`{read}
 	bind -a '#l1' /net
 	aux/wpa -s $essid -p /net/ether1
 	ip/ipconfig ether /net/ether1
@@ -42,7 +49,7 @@ case terminal
 	echo -n 'res 3' > '#m/mousectl'
 	prompt=('; ' '	')
 	fn term%{ $* }
-	rio -i riostart
+	rio -si riostart
 case cpu
 	bind /mnt/term/dev/cons /dev/cons
 	bind -q /mnt/term/dev/consctl /dev/consctl
@@ -56,7 +63,7 @@ case cpu
 		}
 	} 
 	bind -a /mnt/term/dev /dev
-	prompt=('cpu% ' '	')
+	prompt=(''$sysname'; ' '	')
 	fn cpu%{ $* }
 	if(! test -e /mnt/term/dev/wsys){
 		# call from drawterm
@@ -77,5 +84,5 @@ case con
 }
 
 # Some aliases
-fn vis{sam $*}
-fn sma{sam $*}
+fn vis{s $*}
+fn sma{s  $*}

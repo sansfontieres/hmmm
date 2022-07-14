@@ -1,6 +1,6 @@
 </$objtype/mkfile
 
-all = $home/lib/profile $home/lib/plumbing $home/lib/git $home/lib/bin /cfg/$sysname $objtype/bin/prompt
+all = $home/lib/profile $home/lib/plumbing $home/lib/git $home/lib/bin /cfg/$sysname $home/lib/themes $objtype/bin/prompt
 
 all:V: $all
 
@@ -22,10 +22,11 @@ $home/lib/themes: themes
 	clone $prereq $target
 
 $home/lib/bin: bin
-	rm -rf $target
-	clone $prereq $target
-	bind -qa $home/lib/bin /bin
-	bind -qa $home/lib/bin/git /bin/git/
+	rm -f $target/*
+	rm -f $target/git/*
+	mkdir -p $target/git
+	cp $prereq/git/* $target/git/
+	cp $prereq/* $target
 
 /cfg/$sysname: cfg/$sysname
 	rm -rf $target

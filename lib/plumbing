@@ -1,7 +1,7 @@
 # to update: cp $home/lib/plumbing /mnt/plumb/rules
 
 editor = sam
-browser = mothra
+browser = netsurf
 
 # Thanks Sigrid
 type	is	text
