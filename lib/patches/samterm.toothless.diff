@@ -1,0 +1,96 @@
+diff -r 175f3e344edd sys/src/cmd/samterm/flayer.c
+--- a/sys/src/cmd/samterm/flayer.c	Sat Feb 20 12:55:42 2021 +0100
++++ b/sys/src/cmd/samterm/flayer.c	Sat Feb 20 13:42:52 2021 +0100
+@@ -29,18 +29,22 @@
+ 	lDrect = r;
+ 
+ 	/* Main text is yellowish */
+-	maincols[BACK] = allocimagemix(display, DPaleyellow, DWhite);
+-	maincols[HIGH] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, DDarkyellow);
+-	maincols[BORD] = allocimage(display, Rect(0,0,2,2), screen->chan, 1, DYellowgreen);
+-	maincols[TEXT] = display->black;
+-	maincols[HTEXT] = display->black;
++	maincols[BACK] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, 0xFFFFFFFF);
++	maincols[HIGH] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, 0xE2E3FAFF);
++ 	maincols[BORD] = allocimage(display, Rect(0,0,2,2), CMAP8, 1, 0x858585FF);
++ 	draw(maincols[BORD], Rect(1,1,2,2), allocimage(display, Rect(0,0,1,1), screen->chan, 1, 0xFFFFFFFF), nil, ZP);
++ 	draw(maincols[BORD], Rect(0,0,1,1), allocimage(display, Rect(0,0,1,1), screen->chan, 1, 0xFFFFFFFF), nil, ZP);
++	maincols[TEXT] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, 0x222222FF);
++	maincols[HTEXT] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, 0x222222FF);
+ 
+ 	/* Command text is blueish */
+-	cmdcols[BACK] = allocimagemix(display, DPalebluegreen, DWhite);
+-	cmdcols[HIGH] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, DPalegreygreen);
+-	cmdcols[BORD] = allocimage(display, Rect(0,0,2,2), screen->chan, 1, DPurpleblue);
+-	cmdcols[TEXT] = display->black;
+-	cmdcols[HTEXT] = display->black;
++	cmdcols[BACK] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, 0xEEEEEEFF);
++	cmdcols[HIGH] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, 0xE2E3FAFF);
++	cmdcols[BORD] = allocimage(display, Rect(0,0,2,2), CMAP8, 1, 0x858585FF);
++ 	draw(cmdcols[BORD], Rect(1,1,2,2), allocimage(display, Rect(0,0,1,1), screen->chan, 1, 0xEEEEEEFF), nil, ZP);
++ 	draw(cmdcols[BORD], Rect(0,0,1,1), allocimage(display, Rect(0,0,1,1), screen->chan, 1, 0xEEEEEEFF), nil, ZP);
++	cmdcols[TEXT] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, 0x222222FF);
++	cmdcols[HTEXT] = allocimage(display, Rect(0,0,1,1), screen->chan, 1, 0x222222FF);
+ }
+ 
+ void
+diff -r 175f3e344edd sys/src/cmd/samterm/menu.c
+--- a/sys/src/cmd/samterm/menu.c	Sat Feb 20 12:55:42 2021 +0100
++++ b/sys/src/cmd/samterm/menu.c	Sat Feb 20 13:42:52 2021 +0100
+@@ -45,21 +45,21 @@
+ };
+ 
+ char	*menu2str[] = {
+-	"cut",
+-	"paste",
+-	"snarf",
+-	"plumb",
+-	"look",
++	"Cut",
++	"Paste",
++	"Snarf",
++	"Plumb",
++	"Look",
+ 	"<rio>",
+ 	0,		/* storage for last pattern */
+ };
+ 
+ char	*menu3str[] = {
+-	"new",
+-	"zerox",
+-	"resize",
+-	"close",
+-	"write",
++	"New",
++	"Zerox",
++	"Resize",
++	"Close",
++	"Write",
+ };
+ 
+ Menu	menu2 =	{0, genmenu2};
+diff -r 175f3e344edd sys/src/cmd/samterm/mkfile
+--- a/sys/src/cmd/samterm/mkfile	Sat Feb 20 12:55:42 2021 +0100
++++ b/sys/src/cmd/samterm/mkfile	Sat Feb 20 13:42:52 2021 +0100
+@@ -1,6 +1,6 @@
+ </$objtype/mkfile
+ 
+-TARG=samterm
++TARG=samterm.$sysname
+ OFILES=main.$O\
+ 	icons.$O\
+ 	menu.$O\
+diff -r 175f3e344edd sys/src/cmd/samterm/scroll.c
+--- a/sys/src/cmd/samterm/scroll.c	Sat Feb 20 12:55:42 2021 +0100
++++ b/sys/src/cmd/samterm/scroll.c	Sat Feb 20 13:42:52 2021 +0100
+@@ -93,8 +93,9 @@
+ 	if(!eqrect(r2, l->lastsr)){
+ 		l->lastsr = r2;
+ 		draw(b, r1, l->f.cols[BORD], nil, ZP);
+-		draw(b, r2, l->f.cols[BACK], nil, r2.min);
++		draw(b, r2, allocimage(display, Rect(0,0,2,2), screen->chan, 1, 0xEEEEEEFF), nil, r2.min);
+ 		r2 = r1;
++		r2.max.x = r2.max.x+1;
+ 		r2.min.x = r2.max.x-1;
+ 		draw(b, r2, l->f.cols[BORD], nil, ZP);
+ 		if(b!=l->f.b)
