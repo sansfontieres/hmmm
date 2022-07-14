@@ -2,7 +2,6 @@
 # rcpu to my servers.
 rfork e
 
-domain=sansfontieres.com
 dest=$1.$domain
 
 if(~ $#* 0){
@@ -10,6 +9,6 @@ if(~ $#* 0){
 	exit
 }
 if not if (~ $#2 0)
-	rcpu -h $dest -u romi
+	rcpu -h $dest
 if not if (~ $#2 1)
-	rcpu -h $dest -u romi -c $2
+	rcpu -h $dest -u -c $2

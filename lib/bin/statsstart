@@ -1,4 +1,4 @@
 #!/bin/rc
-font=$fontlib/stack/mono.14.font
+font=$monospace
 
-window 0,0,400,204 stats -l8zmfe XOK9 Chitatap.$domain Asinru.$domain
+window 0,0,400,204 stats -l8zmfe $sysname beep.$domain

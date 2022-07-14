@@ -1,4 +1,4 @@
 #!/bin/rc
 
-cat $home/lib/themes/rio/$sysname > /dev/theme
+cat $home/lib/themes/rio/$sysname > /mnt/wsys/theme
 grep softscreen /dev/vgactl >> /dev/vgactl

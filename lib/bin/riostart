@@ -3,3 +3,4 @@
 window -hide -scroll cat /dev/kprint
 window -scroll
 ~ $console 0 || window -scroll -hide console
+window theme

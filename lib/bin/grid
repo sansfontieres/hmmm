@@ -1,0 +1,32 @@
+#!/bin/rc
+
+srv tcp!registry.9p.zone!6675 registry /n/registry
+srv -c tcp!9p.zone!9991 9p.zone.disk /n/disk
+
+fn clean {
+	echo $1 | sed 's/.*!([^!]+)!.*/\1/'
+}
+
+for(s in /n/registry/tcp*){
+	s=`{basename $s}
+	srv $s `{clean $s} /n/^`{clean $s}
+}
+
+>/tmp/chatcat cat <<'...'
+#!/bin/rc
+chan=$1
+label $chan
+cat /n/chat.9p.zone/$chan &
+while() cat | sed '1s/^/'$nick' → /' >>/n/chat.9p.zone/$chan
+...
+chmod +x /tmp/chatcat
+
+>/tmp/gridrio cat <<'...'
+#!/bin/rc
+window -scroll  -r 0 0 9999 9999 /tmp/chatcat chat
+...
+chmod +x /tmp/gridrio
+
+nick=$user
+
+exec rio -s -i /tmp/gridrio

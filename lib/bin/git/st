@@ -1,3 +1,5 @@
-#!/bin/rc
+#!/bin/rc -e
 
+gitroot=`{git/conf -r}
+cd $gitroot && git/fs
 git/walk -f M -f A -f R $*

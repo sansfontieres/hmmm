@@ -1,0 +1,10 @@
+#!/bin/rc
+# clears all the output from programs,
+# leaving only the command prompts
+
+grep `{echo -n '^'^$prompt(1)} </dev/text | \
+	grep -v '^'^$prompt(1)^'(clear|"")' | \
+	uniq >/tmp/clearing.$pid
+
+cp /tmp/clearing.$pid /dev/text
+rm -f /tmp/clearing.$pid

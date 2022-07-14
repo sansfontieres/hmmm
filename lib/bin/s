@@ -1,7 +1,7 @@
 #!/bin/rc
 # My base sam config.
-monospaced=$fontlib/uniio/uniio.$fontsize.font
-font=$monospaced
+rfork
+font=$monospace
 
 bind /bin/aux/samterm.$sysname /bin/aux/samterm
 sam -a $*
