@@ -9,12 +9,13 @@ monospace=$fontlib/pragmata/pragmata.$fontsize.font
 fontsize=16
 sans=$fontlib/inter/inter.$fontsize.font
 font=$sans
+tabstop=2
 
 domain=grtsk.com
 
 mailserver=fastmail.com
 mailuser=telecom@sansfontieres.com
-maildirs=(Sent 9 Bookmarks Feed Miscs-Lists OpenBSD sr.ht-discuss Todo Archive)
+maildirs=(Inbox Archive Sent 9 Feed Lobsters Miscs-Lists OpenBSD sr.ht-discuss Todo)
 
 fn open_mailboxes {
 	upas/fs -f /imaps/imap.$mailserver/$mailuser
@@ -23,10 +24,14 @@ fn open_mailboxes {
 	}
 }
 
+fn load_factotum{
+	ipso -l || load_factotum
+}
+
 fn setup_secstore{ # see /cfg/$sysname/termrc
 	secstore=tcp!127.0.0.1!5356
 	auth/secstored -s $secstore
-	ipso -l
+	load_factotum
 }
 
 fn wifi{
@@ -45,6 +50,7 @@ case terminal
 	setup_secstore
 	wifi
 	plumber
+	open_mailboxes
 	echo -n accelerated > '#m/mousectl'
 	echo -n 'res 3' > '#m/mousectl'
 	prompt=('; ' '	')
