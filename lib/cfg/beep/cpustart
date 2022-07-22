@@ -1,3 +1,4 @@
 #!/bin/rc
 
+auth/secstored
 auth/secstore -n -G factotum >> /mnt/factotum/ctl

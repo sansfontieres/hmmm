@@ -2,4 +2,5 @@
 
 TIMESYNCARGS=(-n pool.ntp.org)
 
+aux/acpi
 ip/ipconfig loopback /dev/null 127.0.0.1
