@@ -24,8 +24,11 @@ $home/lib/themes: themes
 $home/lib/bin: bin
 	rm -f $target/*
 	rm -f $target/git/*
+	rm -f $target/acme/*
 	mkdir -p $target/git
+	mkdir -p $target/acme
 	cp $prereq/git/* $target/git/
+	cp $prereq/acme/* $target/acme/
 	cp $prereq/* $target
 
 /cfg/$sysname: cfg/$sysname

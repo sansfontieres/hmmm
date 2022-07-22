@@ -1,0 +1,4 @@
+#!/bin/rc
+
+ptrap edit '.*' +action '^shodata' +filename '^/mail'
+acme -f $sans -F $monospace -l /tmp/acme.dump

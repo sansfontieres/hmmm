@@ -1,0 +1,12 @@
+diff 845f8d12e4e417aaafaa6e62a80bf03856e7d906 uncommitted
+--- a/sys/src/games/catclock.c
++++ b/sys/src/games/catclock.c
+@@ -225,7 +225,7 @@
+ 	if(xredraw || tm.min!=otm.min || tm.hour!=otm.hour){
+ 		if(xredraw){
+ 			draw(screen, screen->r, display->white, nil, ZP);
+-			border(screen, screen->r, 4, display->black, ZP);
++			// border(screen, screen->r, 4, display->black, ZP);
+ 			replclipr(screen, 0, insetrect(screen->r, 4));
+ 			//bitblt(&screen, screen.r.min, &screen, screen.r, Zero);
+ 			//border(&screen, screen.r, 4, F);

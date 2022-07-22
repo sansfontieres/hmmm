@@ -1,7 +1,8 @@
 bind -qa $home/bin/rc /bin
 bind -qa $home/bin/$cputype /bin
 bind -qa $home/lib/bin /bin
-bind -qa $home/lib/bin/git /bin/git/
+bind -qa $home/lib/bin/git /bin/git
+bind -qa $home/lib/bin/acme /acme/bin
 
 fontlib=$home/lib/font/bit
 fontsize=14

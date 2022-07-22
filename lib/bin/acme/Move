@@ -1,0 +1,33 @@
+#!/bin/rc
+rfork n
+if(! ~ `{pwd} /mail/fs/*){
+ echo Must run in mail directory >[1=2]
+ exit 'bad dir'
+}
+# -- tgt...IMAP mail box name
+tgt=$*
+if(~ $#tgt 0){
+ echo No target folder specified >[1=2]
+ exit usage
+}
+# -- src...extract upas mail box name from tag
+# 's/^\/([^ ]+).*$/\1/' … get path excl. initial '/'
+# 's/\/$//' … drop final '/'
+# 's/[^\/]+\///g' … drop everything before last '/'
+# '1q' … stop processing after 1 line
+src=`{sed 's/^\/([^ ]+).*$/\1/
+s/\/$//
+s/[^\/]+\///g
+1q' /mnt/acme/$winid/tag}
+if(! ~ $#src 1){
+ echo Could not determine source folder >[1=2]
+ exit usage
+}
+# -- msgs...extract message numbers from selection in window
+msgs=`{ssam 'x/.*\n/ s/^([0-9]*).*\n/\1 /' /mnt/acme/$winid/rdsel}
+if(~ $#msgs 0){
+ echo No messages selected >[1=2]
+ exit usage
+}
+# -- move $msgs from $src to $tgt
+echo move $src $msgs $tgt > /mail/fs/ctl
